@@ -2,6 +2,10 @@
 
 This project maintains various EngageLab skills.
 
+- [x] SMS
+- [ ] OTP
+- [ ] WhatsApp
+
 ## EngageLab SMS Skill
 
 An agent skill that enables AI assistants to interact with the [EngageLab SMS REST API](https://www.engagelab.com). It provides structured instructions for sending SMS messages and managing templates and sender ID signatures through EngageLab's platform.
