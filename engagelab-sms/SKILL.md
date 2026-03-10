@@ -20,6 +20,17 @@ This skill enables you to interact with the EngageLab SMS REST API. It covers th
 2. **Template Management** — Create, read, update, and delete SMS templates
 3. **Signature (Sender ID) Management** — Create, read, update, and delete sender ID signatures
 
+## Resources
+
+### scripts/
+
+- **`sms_client.py`** — Python client class (`EngageLabSMS`) wrapping all API endpoints: `send_sms()` (immediate and scheduled), template CRUD (`list_templates()`, `get_template()`, `create_template()`, `update_template()`, `delete_template()`), and signature CRUD (`list_signatures()`, `get_signature()`, `create_signature()`, `update_signature()`, `delete_signature()`). Handles authentication, request construction, and typed error handling. Use as a ready-to-run helper or import into the user's project.
+
+### references/
+
+- **`template-and-signature-api.md`** — Full request/response field specs for all template and signature endpoints
+- **`error-codes.md`** — Complete error code tables for SMS sending and template/signature operations
+
 ## Authentication
 
 All EngageLab SMS API calls use **HTTP Basic Authentication**.

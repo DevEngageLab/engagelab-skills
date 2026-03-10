@@ -90,6 +90,8 @@ npx skills add https://github.com/Metaverse-Cloud/EngageLab-Skills/tree/main/eng
 ```
 engagelab-sms/
 ├── SKILL.md                                   # Main skill file
+├── scripts/
+│   └── sms_client.py                          # Python client for all SMS API endpoints
 └── references/
     ├── template-and-signature-api.md          # Detailed CRUD API specs
     └── error-codes.md                         # Error code reference
@@ -98,6 +100,7 @@ engagelab-sms/
 | File | Purpose |
 |------|---------|
 | `SKILL.md` | Entry point — authentication, endpoint overview, sending workflow, template & signature CRUD summaries, code generation guidance |
+| `scripts/sms_client.py` | Python client class (`EngageLabSMS`) wrapping all endpoints: send SMS (immediate/scheduled), template CRUD, and signature CRUD |
 | `references/template-and-signature-api.md` | Full request/response field specs for all template and signature endpoints |
 | `references/error-codes.md` | Complete error code tables for SMS sending and template/signature operations |
 
