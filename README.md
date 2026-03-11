@@ -6,7 +6,7 @@ This project maintains various EngageLab skills.
 - [x] SMS
 - [x] OTP
 - [x] WhatsApp Business API
-- [x] APP Push
+- [x] App Push
 - [x] Web Push
 
 ## Email
@@ -280,7 +280,7 @@ Authorization: Basic base64(dev_key:dev_secret)
 
 The API base URL is `https://wa.api.engagelab.cc`.
 
-## APP Push
+## App Push
 
 An agent skill that enables AI assistants to interact with the [EngageLab App Push REST API](https://www.engagelab.com/app-push). It supports push notifications and in-app messages to Android, iOS, and HarmonyOS, with multi-vendor channel support (FCM, Huawei, Xiaomi, OPPO, vivo, Meizu, Honor, etc.).
 
