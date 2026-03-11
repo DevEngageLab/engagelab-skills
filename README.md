@@ -6,8 +6,6 @@ This project maintains various EngageLab skills.
 - [x] SMS
 - [x] OTP
 - [x] WhatsApp Business API
-- [ ] Silent Auth
-- [ ] CAPTCHA
 
 ## Email
 
@@ -23,7 +21,7 @@ An agent skill that enables AI assistants to send emails via the [EngageLab Emai
 ### Installation
 
 ```shell
-npx skills add https://github.com/Metaverse-Cloud/EngageLab-Skills/tree/main/engagelab-email
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-email
 ```
 
 ### Skill Structure
@@ -84,7 +82,7 @@ An agent skill that enables AI assistants to interact with the [EngageLab SMS RE
 ### Installation
 
 ```shell
-npx skills add https://github.com/Metaverse-Cloud/EngageLab-Skills/tree/main/engagelab-sms
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-sms
 ```
 
 ### Skill Structure
@@ -154,7 +152,7 @@ An agent skill that enables AI assistants to interact with the [EngageLab OTP RE
 ### Installation
 
 ```shell
-npx skills add https://github.com/Metaverse-Cloud/EngageLab-Skills/tree/main/engagelab-otp
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-otp
 ```
 
 ### Skill Structure
@@ -226,7 +224,7 @@ An agent skill that enables AI assistants to interact with the [EngageLab WhatsA
 ### Installation
 
 ```shell
-npx skills add https://github.com/Metaverse-Cloud/EngageLab-Skills/tree/main/engagelab-whatsapp-business
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-whatsapp-business
 ```
 
 ### Skill Structure
