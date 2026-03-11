@@ -6,6 +6,8 @@ This project maintains various EngageLab skills.
 - [x] SMS
 - [x] OTP
 - [x] WhatsApp Business API
+- [x] APP Push
+- [x] Web Push
 
 ## Email
 
@@ -277,3 +279,164 @@ Authorization: Basic base64(dev_key:dev_secret)
 ```
 
 The API base URL is `https://wa.api.engagelab.cc`.
+
+## APP Push
+
+An agent skill that enables AI assistants to interact with the [EngageLab App Push REST API](https://www.engagelab.com/app-push). It supports push notifications and in-app messages to Android, iOS, and HarmonyOS, with multi-vendor channel support (FCM, Huawei, Xiaomi, OPPO, vivo, Meizu, Honor, etc.).
+
+### What It Does
+
+- **Send Push** — Send notifications or in-app messages to single/multiple devices (broadcast, tag, alias, registration_id, segment)
+- **Batch Single Push** — Batch push by registration_id or alias (up to 500 per request)
+- **Group Push** — Push to all apps in a group
+- **Push Plans** — Create/update/list push plans and query msg_ids by plan
+- **Scheduled Tasks** — Create, get, update, delete scheduled push tasks (single, periodical, intelligent)
+- **Tag & Alias** — Query/set/delete device tags and aliases; query tag count
+- **Message Recall** — Recall a pushed message within one day
+- **Statistics & Callback** — Message lifecycle stats and webhook setup with HMAC-SHA256 verification
+
+### Installation
+
+```shell
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-apppush
+```
+
+### Skill Structure
+
+```
+engagelab-apppush/
+├── SKILL.md                                   # Main skill file
+├── scripts/
+│   └── push_client.py                         # Python client for all App Push API endpoints
+└── references/
+    ├── error-codes.md                         # Error code reference
+    ├── http-status-code.md                    # HTTP status code specification
+    └── callback-api.md                        # Callback webhook events and security
+```
+
+| File | Purpose |
+|------|---------|
+| `SKILL.md` | Entry point — authentication, endpoint overview, push workflow, batch/group push, scheduled tasks, tag & alias, message recall, statistics, callback, code generation guidance |
+| `scripts/push_client.py` | Python client class (`EngageLabPush`) wrapping all endpoints: create push, batch push, device get/set/delete, tag count, message recall, push plan, scheduled tasks, and statistics |
+| `references/error-codes.md` | Complete error code tables for push operations |
+| `references/http-status-code.md` | HTTP status code specification |
+| `references/callback-api.md` | Callback address, validation, and security (X-CALLBACK-ID, HMAC-SHA256) |
+
+### API Coverage
+
+| Operation | Method | Endpoint |
+|-----------|--------|----------|
+| Create push | `POST` | `/v4/push` |
+| Batch push by registration_id | `POST` | `/v4/batch/push/regid` |
+| Batch push by alias | `POST` | `/v4/batch/push/alias` |
+| Group push | `POST` | `/v4/grouppush` |
+| Create/update push plan | `POST` | `/v4/push_plan` |
+| List push plans | `GET` | `/v4/push_plan/list` |
+| Create scheduled task | `POST` | `/v4/schedules` |
+| Get scheduled task | `GET` | `/v4/schedules/{schedule_id}` |
+| Update scheduled task | `PUT` | `/v4/schedules/{schedule_id}` |
+| Delete scheduled task | `DELETE` | `/v4/schedules/{schedule_id}` |
+| Tag count | `GET` | `/v4/tags_count` |
+| Get device (tags/alias) | `GET` | `/v4/devices/{registration_id}` |
+| Set device tags/alias | `POST` | `/v4/devices/{registration_id}` |
+| Delete device (user) | `DELETE` | `/v4/devices/{registration_id}` |
+| Message recall | `DELETE` | `/v4/push/withdraw/{msg_id}` |
+| Message statistics | `GET` | `/v4/status/detail` |
+| Test push (validate) | `POST` | `/v4/push/validate` |
+| OPPO image upload | `POST` | `/v4/image/oppo` |
+| Create/update voice | `POST` | `/v4/voices` |
+
+### Prerequisites
+
+Before using this skill, complete these steps in the [EngageLab console](https://www.engagelab.com):
+
+1. **Create API credentials** — Go to Application Settings > Application Info to obtain an `AppKey` and `Master Secret`
+2. **Integrate the SDK** — Integrate the EngageLab SDK into your Android, iOS, or HarmonyOS app
+3. **Configure vendor channels** (optional) — Set up FCM, Huawei, Xiaomi, OPPO, vivo, etc. for higher delivery rates
+
+### Authentication
+
+All API calls use HTTP Basic Authentication:
+
+```
+Authorization: Basic base64(appKey:masterSecret)
+```
+
+The default data center endpoint is `https://pushapi-sgp.engagelab.com` (Singapore).
+
+## Web Push
+
+An agent skill that enables AI assistants to interact with the [EngageLab Web Push REST API](https://www.engagelab.com/web-push). It supports push notifications and in-app messages to web browsers including Chrome, Firefox, Safari, Edge, and Opera via EngageLab channel and system channels.
+
+### What It Does
+
+- **Send Push** — Send notifications or messages to web devices (broadcast, tag, alias, registration_id)
+- **Batch Single Push** — Batch push by registration_id or alias (up to 500 per request)
+- **Group Push** — Push to all apps in a group
+- **Scheduled Tasks** — Create, get, update, delete scheduled web push tasks (single, periodical, intelligent)
+- **Tag & Alias** — Query/set/delete device tags and aliases; query tag count
+- **Delete User** — Delete a user (registration_id) and all associated data
+- **Statistics & Callback** — Message lifecycle stats and webhook setup with HMAC-SHA256 verification
+
+### Installation
+
+```shell
+npx skills add https://github.com/DevEngageLab/engagelab-skills/tree/main/engagelab-webpush
+```
+
+### Skill Structure
+
+```
+engagelab-webpush/
+├── SKILL.md                                   # Main skill file
+├── scripts/
+│   └── webpush_client.py                      # Python client for all Web Push API endpoints
+└── references/
+    ├── error-codes.md                         # Error code reference
+    ├── http-status-code.md                    # HTTP status code specification
+    └── callback-api.md                        # Callback webhook events and security
+```
+
+| File | Purpose |
+|------|---------|
+| `SKILL.md` | Entry point — authentication, endpoint overview, push workflow, batch/group push, scheduled tasks, tag & alias, statistics, callback, code generation guidance |
+| `scripts/webpush_client.py` | Python client class (`EngageLabWebPush`) wrapping all endpoints: create push, batch push, device get/set/delete, tag count, scheduled tasks, and statistics |
+| `references/error-codes.md` | Complete error code tables for web push operations |
+| `references/http-status-code.md` | HTTP status code specification |
+| `references/callback-api.md` | Callback address, validation, and security (X-CALLBACK-ID, HMAC-SHA256) |
+
+### API Coverage
+
+| Operation | Method | Endpoint |
+|-----------|--------|----------|
+| Create push | `POST` | `/v4/push` |
+| Batch push by registration_id | `POST` | `/v4/batch/push/regid` |
+| Batch push by alias | `POST` | `/v4/batch/push/alias` |
+| Group push | `POST` | `/v4/grouppush` |
+| Create scheduled task | `POST` | `/v4/schedules` |
+| Get scheduled task | `GET` | `/v4/schedules/{schedule_id}` |
+| Update scheduled task | `PUT` | `/v4/schedules/{schedule_id}` |
+| Delete scheduled task | `DELETE` | `/v4/schedules/{schedule_id}` |
+| Tag count | `GET` | `/v4/tags_count` |
+| Get device (tags/alias) | `GET` | `/v4/devices/{registration_id}` |
+| Set device tags/alias | `POST` | `/v4/devices/{registration_id}` |
+| Delete device (user) | `DELETE` | `/v4/devices/{registration_id}` |
+| Message statistics | `GET` | `/v4/messages/details` |
+
+### Prerequisites
+
+Before using this skill, complete these steps in the [EngageLab console](https://www.engagelab.com):
+
+1. **Create API credentials** — Go to Application Settings > Application Info to obtain an `AppKey` and `Master Secret`
+2. **Integrate the Web SDK** — Add the EngageLab Web Push SDK to your website
+3. **Configure browser channels** (optional) — Set up Chrome, Firefox, Safari, Edge, or Opera push certificates
+
+### Authentication
+
+All API calls use HTTP Basic Authentication:
+
+```
+Authorization: Basic base64(appKey:masterSecret)
+```
+
+The default data center endpoint is `https://webpushapi-sgp.engagelab.com` (Singapore).
