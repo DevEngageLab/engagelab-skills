@@ -21,8 +21,8 @@ npx skills add engagelab/agent-skills:engagelab-otp-webhook
 These skills work with a public sandbox. No account needed to evaluate:
 
 ```
-ENGAGELAB_DEV_KEY=sandbox_demo
-ENGAGELAB_DEV_SECRET=sandbox_secret
+ENGAGELAB_DEV_KEY=engagelab_sandbox_demo
+ENGAGELAB_DEV_SECRET=engagelab_sandbox_secret
 ```
 
 Send a test OTP to a magic sandbox number — see [SANDBOX.md](SANDBOX.md) for the full magic number list.
